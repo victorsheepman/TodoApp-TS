@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 
-import { callApi } from "./db"
+import { callDB } from "./db"
 
 import { Todo } from "./schema"
-import { addTodos, useAppDispatch} from "./reducer"
-import { Col, Row, Typography } from "antd"
+import { setTodoList, useAppDispatch } from "./reducer"
+import { Alert, Col, Row, Typography } from "antd"
 import { Tab } from "./components"
 
 import { style } from "typestyle"
@@ -15,11 +15,11 @@ export const TodoApp = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const todos: Todo[] | undefined = await callApi();
-        if (todos !== undefined) {
-          dispatch(addTodos(todos))
+        const todosDB: Todo[] | undefined = await callDB();
+        if (todosDB !== undefined) {
+          dispatch(setTodoList(todosDB))
         } else {
-          console.log('No se pudo obtener la lista de todos');
+          <Alert message="Error al llamar a la base de datos" type="error" />
         }
       } catch (error) {
         console.error('Error in fetchData', error);

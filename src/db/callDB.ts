@@ -2,18 +2,18 @@
 import { Todo } from "../schema"
 import supabase from "./clientDB"
 
-export const callApi = async () => {
-    let cleanData:Todo[] = []
+export const callDB = async () => {
+    let dataDB:Todo[] = []
     try {
         const { data, error } = await supabase.from('todos').select()
         if (!error) {
-            cleanData = data.map((item: Todo) => ({
+            dataDB = data.map((item: Todo) => ({
                 id: item.id,
                 title: item.title,
                 done: item.done,
             }))
         }
-        return cleanData
+        return dataDB
     } catch (error) {
         console.error('Error en la llamada a la API:', error)
         return undefined

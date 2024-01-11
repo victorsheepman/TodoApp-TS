@@ -16,7 +16,7 @@ export const Tab = () => {
           label: 'All',
           children:
           <div className={tabContainer}> 
-            <TodoList data={state.todos}/>
+            <TodoList data={state.todoList}/>
           </div>,
         },
         {
@@ -24,7 +24,7 @@ export const Tab = () => {
           label: 'Active',
           children: 
           <div className={tabContainer}>
-            <TodoList data={state.todos.filter(i=>i.done !== true)} />
+            <TodoList data={state.todoList.filter(i=>i.done !== true)} />
           </div>
         },
         {

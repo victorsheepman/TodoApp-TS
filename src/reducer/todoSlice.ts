@@ -4,38 +4,42 @@ import type { RootState } from './store'
 import { Todo } from '../schema'
 
 interface todoState {
-  todos: Todo[]
+  todoList: Todo[]
 }
 
 
 const initialState: todoState = {
-  todos: [],
+  todoList: [],
 }
 
 export const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodos: (state, action: PayloadAction<Todo[]>) => {
-      state.todos = action.payload
+    setTodoList: (state, action: PayloadAction<Todo[]>) => {
+      state.todoList = action.payload
     },
     clickTodo:(state, action:PayloadAction<number>) => {
-      state.todos.forEach( todo => { 
-        todo.id == action.payload ? todo.done = !todo.done : null
+      const idSelected  =  action.payload
+      state.todoList.forEach( todo => { 
+        if(todo.id === idSelected) {
+          todo.done = !todo.done
+        }
       })
     },
     setTodo:(state, action:PayloadAction<string>) => {
+      const lastIndex = state.todoList.length - 1
       const newTodo:Todo = {
         title:action.payload,
         done:false, 
-        id:state.todos.length
+        id:state.todoList[lastIndex].id + 1
       }
-     state.todos.push(newTodo)
+     state.todoList.push(newTodo)
     },
   },
 })
 
-export const { addTodos, clickTodo, setTodo } = todoSlice.actions
+export const { setTodoList, clickTodo, setTodo } = todoSlice.actions
 
 export const selectCount = (state: RootState) => state.todos
 

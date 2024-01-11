@@ -27,8 +27,9 @@ export const TodoForm = () => {
                     name="title"
                     rules={[{ required: true, message: 'Please input your todo!' }]}
                     wrapperCol={{span:24}}
+                    
                 >
-                    <Input className={inputStyle} />
+                    <Input className={inputStyle} placeholder='add details' />
                 </Form.Item>
                 
             </Col>
