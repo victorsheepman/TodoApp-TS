@@ -4,6 +4,8 @@ import { callApi } from "./db/callApi"
 
 import { Todo } from "./schema"
 import { addTodos, useAppDispatch } from "./reducer"
+import { Col, Row, Typography } from "antd"
+import { Tab } from "./components/Tab"
 
 
 export const TodoApp = () => {
@@ -28,6 +30,13 @@ export const TodoApp = () => {
   }, [])
   
   return (
-    <div>TodoApp</div>
+    <Row>
+      <Col span={24} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <Typography.Title level={3}>#todo</Typography.Title>
+      </Col>
+      <Col span={24}>
+        <Tab />
+      </Col>
+    </Row>
   )
 }
