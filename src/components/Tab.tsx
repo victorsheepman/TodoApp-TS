@@ -1,6 +1,7 @@
-import { List, Tabs, TabsProps } from 'antd';
+import { Tabs, TabsProps } from 'antd';
 import { useAppSelector } from '../reducer';
-import { TodoCheck } from './TodoCheck';
+import { style } from 'typestyle';
+import { TodoList } from '../container';
 
 
 export const Tab = () => {
@@ -13,24 +14,18 @@ export const Tab = () => {
         {
           key: '1',
           label: 'All',
-         /* children: <List
-          itemLayout="horizontal"
-          dataSource={state.todos}
-          renderItem={(item, index) => (
-            <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
-          )}
-        />,*/
+          children:
+          <div className={tabContainer}> 
+            <TodoList data={state.todos}/>
+          </div>,
         },
         {
           key: '2',
           label: 'Active',
-         /* children: <List
-          itemLayout="horizontal"
-          dataSource={state.todos.filter(i=>i.done !== true)}
-          renderItem={(item, index) => (
-            <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
-          )}
-        />,*/
+          children: 
+          <div className={tabContainer}>
+            <TodoList data={state.todos.filter(i=>i.done !== true)} />
+          </div>
         },
         {
           key: '3',
@@ -43,3 +38,13 @@ export const Tab = () => {
     <Tabs centered tabBarGutter={100} defaultActiveKey="1" items={items} onChange={onChange} />
   )
 }
+
+
+const tabContainer = style(
+  {
+    width:'100%',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+  }
+)  

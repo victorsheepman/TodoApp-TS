@@ -1,18 +1,17 @@
 import { useEffect } from "react"
 
-import { callApi } from "./db/callApi"
+import { callApi } from "./db"
 
 import { Todo } from "./schema"
-import { addTodos, useAppDispatch, useAppSelector } from "./reducer"
-import { Col, List, Row, Typography } from "antd"
-import { Tab } from "./components/Tab"
-import { TodoForm } from "./components/TodoForm"
-import { TodoCheck } from "./components/TodoCheck"
+import { addTodos, useAppDispatch} from "./reducer"
+import { Col, Row, Typography } from "antd"
+import { Tab } from "./components"
+
+import { style } from "typestyle"
 
 
 export const TodoApp = () => {
   const dispatch = useAppDispatch()
-  const state = useAppSelector(s=>s.todos)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,22 +30,20 @@ export const TodoApp = () => {
   
   return (
     <Row>
-      <Col span={24} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <Col span={24} className={colWrapper}>
         <Typography.Title level={3}>#todo</Typography.Title>
       </Col>
-      <Col span={24} style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-        <Tab />
-        <TodoForm />
-      </Col>
       <Col span={24}>
-        <List
-          itemLayout="horizontal"
-          dataSource={state.todos}
-          renderItem={(item, index) => (
-            <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
-          )}
-        />
+        <Tab />
       </Col>
     </Row>
   )
 }
+
+const colWrapper = style(
+  {
+    display:'flex', 
+    justifyContent:'center', 
+    alignItems:'center'
+  }
+)

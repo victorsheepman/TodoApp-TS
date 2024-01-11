@@ -1,11 +1,14 @@
 import { Button, Col, Form, Input, Row } from 'antd'
+import { setTodo, useAppDispatch } from '../reducer';
+import { classes, style } from 'typestyle';
 
 export const TodoForm = () => {
-    const onFinish = (values: string) => {
-        console.log('Success:', values);
+    const dispatch = useAppDispatch()
+    const onFinish = (values: {title:string}) => {
+        dispatch(setTodo(values.title))
     };
       
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo: unknown) => {
         console.log('Failed:', errorInfo);
     };
       
@@ -16,7 +19,7 @@ export const TodoForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
-        style={{width:'70%'}}
+        style={{width:'80%'}}
     >
         <Row gutter={25}>
             <Col span={14} lg={14} xs={24}>
@@ -25,13 +28,13 @@ export const TodoForm = () => {
                     rules={[{ required: true, message: 'Please input your todo!' }]}
                     wrapperCol={{span:24}}
                 >
-                    <Input style={{height:'56px', borderRadius:'12px', }} />
+                    <Input className={inputStyle} />
                 </Form.Item>
                 
             </Col>
             <Col span={4}>
                 <Form.Item >
-                    <Button style={{width:'109px',height:'56px', borderRadius:'12px'}} type="primary" htmlType="submit">
+                    <Button className={classes(inputStyle, style({width:'109px'}))} type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>
@@ -40,3 +43,10 @@ export const TodoForm = () => {
   </Form>
   )
 }
+
+const inputStyle = style(
+    {
+        height:'56px', 
+        borderRadius:'12px'
+    }
+)

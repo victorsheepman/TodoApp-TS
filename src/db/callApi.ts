@@ -7,14 +7,11 @@ export const callApi = async () => {
     try {
         const { data, error } = await supabase.from('todos').select()
         if (!error) {
-            console.log(data);
-            
             cleanData = data.map((item: Todo) => ({
                 id: item.id,
                 title: item.title,
                 done: item.done,
             }))
-            
         }
         return cleanData
     } catch (error) {

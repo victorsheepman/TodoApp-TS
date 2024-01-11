@@ -12,10 +12,12 @@ export const TodoCheck:React.FC<Todo> = ({title, done, id}) => {
     };
       
   return (
-    <Checkbox checked={done} onChange={onChange}>
-        <Typography.Text delete={done}>
-            {title}
-        </Typography.Text>
-    </Checkbox>
+    <div>
+      <Checkbox checked={done} onChange={onChange}>
+          <Typography.Text delete={done}>
+              {title}
+          </Typography.Text>
+      </Checkbox>
+    </div>
   )
 }
