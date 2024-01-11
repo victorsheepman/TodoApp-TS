@@ -1,42 +1,36 @@
 import { List, Tabs, TabsProps } from 'antd';
+import { useAppSelector } from '../reducer';
+import { TodoCheck } from './TodoCheck';
 
 
 export const Tab = () => {
     const onChange = (key: string) => {
         console.log(key);
     };
-    const data = [
-        {
-          title: 'Ant Design Title 1',
-        },
-        {
-          title: 'Ant Design Title 2',
-        },
-        {
-          title: 'Ant Design Title 3',
-        },
-        {
-          title: 'Ant Design Title 4',
-        },
-      ];
-      
+    const state = useAppSelector(state=>state.todos)
       
     const items: TabsProps['items'] = [
         {
           key: '1',
           label: 'All',
-          children: <List
+         /* children: <List
           itemLayout="horizontal"
-          dataSource={data}
+          dataSource={state.todos}
           renderItem={(item, index) => (
-            <h1 key={index}> {item.title} </h1>
+            <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
           )}
-        />,
+        />,*/
         },
         {
           key: '2',
           label: 'Active',
-          children: 'Content of Tab Pane 2',
+         /* children: <List
+          itemLayout="horizontal"
+          dataSource={state.todos.filter(i=>i.done !== true)}
+          renderItem={(item, index) => (
+            <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
+          )}
+        />,*/
         },
         {
           key: '3',
