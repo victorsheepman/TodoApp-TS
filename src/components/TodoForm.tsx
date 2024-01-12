@@ -3,9 +3,11 @@ import { setTodo, useAppDispatch } from '../reducer';
 import { classes, style } from 'typestyle';
 
 export const TodoForm = () => {
+    const [form] = Form.useForm();
     const dispatch = useAppDispatch()
     const onFinish = (values: {title:string}) => {
         dispatch(setTodo(values.title))
+        form.resetFields()
     };
       
     const onFinishFailed = (errorInfo: unknown) => {
@@ -15,6 +17,7 @@ export const TodoForm = () => {
   return (
     <Form
         name="basic"
+        form={form}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -29,7 +32,7 @@ export const TodoForm = () => {
                     wrapperCol={{span:24}}
                     
                 >
-                    <Input className={inputStyle} placeholder='add details' />
+                    <Input className={inputStyle} onPressEnter={(e) => e.preventDefault()} placeholder='add details' />
                 </Form.Item>
                 
             </Col>
