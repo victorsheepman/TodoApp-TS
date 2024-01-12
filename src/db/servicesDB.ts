@@ -14,3 +14,10 @@ export const deleteTodoDB = async (id:number) => {
         console.error(error)
     }
 }
+
+export const updateTodoDB = async (id:number, done:boolean) => {
+    const { error } = await supabase.from('todos').update({ done: done }).eq('id', id)
+    if (error) {
+        console.error(error)
+    }
+}

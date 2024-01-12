@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import { Todo } from '../schema'
-import { deleteTodoDB, insertTodoDB } from '../db'
+import { deleteTodoDB, insertTodoDB, updateTodoDB } from '../db'
 
 
 interface todoState {
@@ -23,11 +23,16 @@ export const todoSlice = createSlice({
     },
     clickTodo:(state, action:PayloadAction<number>) => {
       const idSelected  =  action.payload
+      const todoSelected = state.todoList.find(todo=>todo.id == idSelected)
       state.todoList.forEach( todo => { 
         if(todo.id === idSelected) {
           todo.done = !todo.done
         }
       })
+      if (todoSelected?.done) {
+        updateTodoDB(idSelected, todoSelected.done)
+      }
+      
     },
     setTodo:(state, action:PayloadAction<string>) => {
       const lastIndex = state.todoList.length - 1
@@ -46,6 +51,10 @@ export const todoSlice = createSlice({
       deleteTodoDB(idToDelete)
     },
     deleteAllTodo:(state)=>{
+      const idsCompleted = state.todoList.filter(todo => todo.done == true).map(todo => todo.id)
+      idsCompleted.forEach(id=>{
+        deleteTodoDB(id)
+      })
       state.todoList = state.todoList.filter(todo => todo.done !== true)
     }
   },
