@@ -35,7 +35,11 @@ export const TodoForm = () => {
             </Col>
             <Col span={4}>
                 <Form.Item >
-                    <Button className={classes(inputStyle, style({width:'109px'}))} type="primary" htmlType="submit">
+                    <Button 
+                        className={classes(inputStyle, style({width:'109px'}))} 
+                        type="primary" 
+                        htmlType="submit"
+                    >
                         Submit
                     </Button>
                 </Form.Item>

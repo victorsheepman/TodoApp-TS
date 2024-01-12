@@ -1,17 +1,14 @@
 import { Tabs, TabsProps } from 'antd';
 import { useAppSelector } from '../reducer';
 import { style } from 'typestyle';
-import { TodoList } from '../container';
-import { TodoCompletedList } from '../container/TodoCompletedList';
-
+import { TodoList, TodoCompletedList } from '../container';
 
 export const Tab = () => {
-    const onChange = (key: string) => {
-        console.log(key);
-    };
     const state = useAppSelector(state=>state.todos)
+    
     const activeTodos = state.todoList.filter(todo => todo.done !== true);
     const todoComplete = state.todoList.filter(todo => todo.done == true)
+    
     const items: TabsProps['items'] = [
         {
           key: '1',
@@ -39,8 +36,17 @@ export const Tab = () => {
         },
     ];
     
+    const onChange = (key: string) => {
+      console.log(key);
+    };
   return (
-    <Tabs centered tabBarGutter={100} defaultActiveKey="1" items={items} onChange={onChange} />
+    <Tabs 
+      centered 
+      tabBarGutter={100} 
+      defaultActiveKey="1" 
+      items={items} 
+      onChange={onChange} 
+    />
   )
 }
 

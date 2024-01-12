@@ -21,13 +21,30 @@ export const TodoCompletedList = ({data}:{data:Todo[]}) => {
         <Col span={24}>
             <List
                 dataSource={data}
-                renderItem={(item, index) => (
-                    <TodoCompleted title={item.title} done={item.done} key={index} id={item.id} />
+                renderItem={(todo, index) => (
+                    <TodoCompleted 
+                        key={index} 
+                        title={todo.title} 
+                        done={todo.done} 
+                        id={todo.id} 
+                    />
                 )}
             />
         </Col>
-        <Col span={24} className={style({display:'flex', justifyContent:'flex-end', marginTop:'34px'})}>
-            <Button type="primary" danger icon={<DeleteOutlined />} onClick={handlerClick}>delete all</Button>
+        <Col 
+            span={24} 
+            className={
+                style({display:'flex', justifyContent:'flex-end', marginTop:'34px'})
+            }
+        >
+            <Button 
+                type="primary" 
+                danger 
+                icon={<DeleteOutlined />} 
+                onClick={handlerClick}
+            >
+                delete all
+            </Button>
         </Col>
     </Row>
   )

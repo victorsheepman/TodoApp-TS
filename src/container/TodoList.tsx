@@ -13,8 +13,13 @@ export const TodoList = ({data}:{data:Todo[]}) => {
         <Col span={24} className={style({paddingLeft:'13%'})}>
             <List
               dataSource={data}
-              renderItem={(item, index) => (
-                <TodoCheck title={item.title} done={item.done} key={index} id={item.id} />
+              renderItem={(todo, index) => (
+                <TodoCheck 
+                  key={index}
+                  title={todo.title} 
+                  done={todo.done} 
+                  id={todo.id} 
+                />
               )}
             />
         </Col>
