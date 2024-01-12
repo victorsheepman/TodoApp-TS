@@ -36,10 +36,17 @@ export const todoSlice = createSlice({
       }
      state.todoList.push(newTodo)
     },
+    deleteTodoById: (state, action:PayloadAction<number>) => {
+      const idToDelete = action.payload
+      state.todoList = state.todoList.filter(todo => todo.id !== idToDelete )
+    },
+    deleteAllTodo:(state)=>{
+      state.todoList = state.todoList.filter(todo => todo.done !== true)
+    }
   },
 })
 
-export const { setTodoList, clickTodo, setTodo } = todoSlice.actions
+export const { setTodoList, clickTodo, setTodo, deleteTodoById, deleteAllTodo } = todoSlice.actions
 
 export const selectCount = (state: RootState) => state.todos
 

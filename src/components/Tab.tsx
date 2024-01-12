@@ -2,6 +2,7 @@ import { Tabs, TabsProps } from 'antd';
 import { useAppSelector } from '../reducer';
 import { style } from 'typestyle';
 import { TodoList } from '../container';
+import { TodoCompletedList } from '../container/TodoCompletedList';
 
 
 export const Tab = () => {
@@ -9,7 +10,8 @@ export const Tab = () => {
         console.log(key);
     };
     const state = useAppSelector(state=>state.todos)
-      
+    const activeTodos = state.todoList.filter(todo => todo.done !== true);
+    const todoComplete = state.todoList.filter(todo => todo.done == true)
     const items: TabsProps['items'] = [
         {
           key: '1',
@@ -24,13 +26,16 @@ export const Tab = () => {
           label: 'Active',
           children: 
           <div className={tabContainer}>
-            <TodoList data={state.todoList.filter(i=>i.done !== true)} />
+            <TodoList data={activeTodos} />
           </div>
         },
         {
           key: '3',
           label: 'Completed',
-          children: 'Content of Tab Pane 3',
+          children: <div className={tabContainer}>
+            <TodoCompletedList  data={todoComplete} />
+          </div> 
+        
         },
     ];
     
