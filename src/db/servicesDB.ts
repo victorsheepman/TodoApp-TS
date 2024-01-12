@@ -7,3 +7,10 @@ export const insertTodoDB = async (todo:Todo)=>{
         console.error(error)
     }
 }
+
+export const deleteTodoDB = async (id:number) => {  
+    const { error } = await supabase.from('todos').delete().eq('id', id)
+    if (error) {
+        console.error(error)
+    }
+}
