@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import { Todo } from '../schema'
+import { insertTodoDB } from '../db'
+
 
 interface todoState {
   todoList: Todo[]
@@ -34,7 +36,9 @@ export const todoSlice = createSlice({
         done:false, 
         id:state.todoList[lastIndex].id + 1
       }
-     state.todoList.push(newTodo)
+      state.todoList.push(newTodo)
+      insertTodoDB(newTodo)
+     
     },
     deleteTodoById: (state, action:PayloadAction<number>) => {
       const idToDelete = action.payload
