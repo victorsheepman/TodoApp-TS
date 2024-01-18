@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## TodoApp - Documentación de la Aplicación de Tareas
+TaskIt es una aplicación simple de gestión de tareas que te permite agregar, completar y eliminar tareas. La aplicación ha sido desarrollada utilizando React para la interfaz de usuario y localStorage para almacenar los datos de las tareas localmente en el navegador. A continuación, encontrarás detalles sobre la estructura del proyecto, las funcionalidades implementadas y cómo ejecutar la aplicación.
 
-Currently, two official plugins are available:
+## Índice
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Estructura del Proyecto](#estructura-del-proyecto)
+2. [Componentes](#componentes)
+3. [Funcionalidades](#funcionalidades)
 
-## Expanding the ESLint configuration
+## 1. Estructura del Proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+La estructura del proyecto es simple y se organiza de la siguiente manera:
 
-- Configure the top-level `parserOptions` property like this:
+- **public**: Contiene archivos estáticos como el ícono de la aplicación.
+- **src**
+  - **components**: Contiene los componentes de React utilizados en la aplicación.
+  - **containers**: Contiene contenedores de componentes.
+  - **Db**: Servicios para utilizar Supabase.
+  - **reducers**: Contiene los slices, las acciones y el store de la libreria redux.
+  - **reducers**: Contiene el modelo de los datos de todo.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 2. Componentes
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+La aplicación TaskIt utiliza varios componentes de React para gestionar las tareas y la interfaz de usuario:
+
+- **TodoCheck**: Componente componente del todo utilizando antd.
+- **TodoCompleted**: Componente que representa la tarea completada con opcion a eliminar.
+- **TodoForm**: Componente que muestra un formulario para agregar nuevas tareas.
+- **Tab**: Componente de antd donde se maneja las sectiones de la app.
+
+## 3. Funcionalidades
+- **Añadir una Nueva Tarea**: Utiliza la caja de texto en la parte superior de la aplicación para agregar una nueva tarea.
+Presiona la tecla "Enter" para confirmar la tarea.
+
+ - **Completar una Tarea**: Haz clic en la casilla de verificación junto a una tarea para marcarla como completada.
+La tarea completada se tachará visualmente.
+- **Cambiar Entre Todos, Activos y Completados**: Utiliza los botones "All", "Active" y "Completed" en la parte inferior para filtrar las tareas según su estado.
+- **Eliminar Tareas Completadas**: En la pestaña "Completed", utiliza el botón "Clear completed" para eliminar todas las tareas completadas.
+- **Almacenamiento en Supabase**: Los datos de las tareas se almacenan en una base de datos llamado Supabase.
+
