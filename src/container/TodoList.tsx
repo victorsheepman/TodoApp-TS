@@ -6,7 +6,7 @@ import { style } from 'typestyle'
 
 export const TodoList = ({data}:{data:Todo[]}) => {
   return (
-    <Row style={{ width:'60%'}}>
+    <Row style={{ width:'100%'}}>
         <Col span={24} className={style({display:'flex', justifyContent:'center'})}>
             <TodoForm />
         </Col>

@@ -22,15 +22,14 @@ export const TodoForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
-        style={{width:'80%'}}
+        style={{width:'100%'}}
     >
         <Row gutter={25}>
-            <Col span={14} lg={14} xs={24}>
+            <Col span={18} lg={18} xs={24}>
                 <Form.Item
                     name="title"
                     rules={[{ required: true, message: 'Please input your todo!' }]}
-                    wrapperCol={{span:24}}
-                    
+                    className={formWrapper}
                 >
                     <Input className={inputStyle} onPressEnter={(e) => e.preventDefault()} placeholder='add details' />
                 </Form.Item>
@@ -39,7 +38,7 @@ export const TodoForm = () => {
             <Col span={4}>
                 <Form.Item >
                     <Button 
-                        className={classes(inputStyle, style({width:'109px'}),buttonText)} 
+                        className={classes(inputStyle, buttonWrapper,buttonText)} 
                         type="primary" 
                         htmlType="submit"
                     >
@@ -51,11 +50,23 @@ export const TodoForm = () => {
   </Form>
   )
 }
-
+const formWrapper = style(
+    {
+        maxWidth:'476px', 
+        width:'100%'
+    }
+)
 const inputStyle = style(
     {
         height:'56px', 
         borderRadius:'12px'
+    }
+)
+
+const buttonWrapper = style(
+    {
+        width:'109px',  
+        boxShadow: '0px 2px 6px 0px rgba(127, 177, 243, 0.40)'
     }
 )
 
