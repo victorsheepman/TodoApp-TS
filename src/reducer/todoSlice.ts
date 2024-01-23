@@ -29,7 +29,7 @@ export const todoSlice = createSlice({
           todo.done = !todo.done
         }
       })
-      if (todoSelected?.done) {
+      if (todoSelected) {
         updateTodoDB(idSelected, todoSelected.done)
       }
       
