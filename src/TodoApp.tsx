@@ -4,10 +4,10 @@ import { callDB } from "./db"
 
 import { Todo } from "./schema"
 import { setTodoList, useAppDispatch } from "./reducer"
-import { Alert, Col, Row, Typography } from "antd"
+import { Alert, Col, Row } from "antd"
 import { Tab } from "./components"
 
-import { style } from "typestyle"
+import { media, style } from "typestyle"
 
 
 export const TodoApp = () => {
@@ -62,9 +62,15 @@ const rowWrapper = style(
 const colWrapper = style(
   {
     display:'flex', 
-    justifyContent:'center', 
-    alignItems:'center'
-  }
+    alignItems:'center',
+    paddingLeft:'13rem'
+  },
+  media(
+    {maxWidth: 500},
+    {
+      paddingLeft:'8rem'
+    }
+  )
 )
 
 const mainTitle = style(
