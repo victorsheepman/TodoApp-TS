@@ -29,16 +29,35 @@ export const TodoApp = () => {
   }, [])
   
   return (
-    <Row>
-      <Col span={24} className={colWrapper}>
-        <Typography.Title level={3}>#todo</Typography.Title>
-      </Col>
-      <Col span={24}>
-        <Tab />
-      </Col>
-    </Row>
+    <main className={mainStyles}>
+      <Row className={rowWrapper}>
+        <Col span={24} className={colWrapper}>
+          <Typography.Title level={3}>#todo</Typography.Title>
+        </Col>
+        <Col span={24}>
+          <Tab />
+        </Col>
+      </Row>  
+    </main>
+   
   )
 }
+
+const mainStyles = style(
+  {
+    width:'100vw',
+    height:'100vh',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'flex-start'
+  }
+)
+const rowWrapper = style(
+  {
+    width:'100%',
+    maxWidth:'608px'
+  }
+)
 
 const colWrapper = style(
   {
