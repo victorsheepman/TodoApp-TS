@@ -39,7 +39,7 @@ export const TodoForm = () => {
             <Col span={4}>
                 <Form.Item >
                     <Button 
-                        className={classes(inputStyle, style({width:'109px'}))} 
+                        className={classes(inputStyle, style({width:'109px'}),buttonText)} 
                         type="primary" 
                         htmlType="submit"
                     >
@@ -58,3 +58,12 @@ const inputStyle = style(
         borderRadius:'12px'
     }
 )
+
+const buttonText = style({
+    color: '#FFF',
+    fontFamily: 'Montserrat',
+    fontSize: '0.875rem',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: 'normal',
+});
