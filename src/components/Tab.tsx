@@ -12,7 +12,7 @@ export const Tab = () => {
     const items: TabsProps['items'] = [
         {
           key: '1',
-          label: 'All',
+          label: <p className={tabText}>All</p>,
           children:
           <div className={tabContainer}> 
             <TodoList data={state.todoList}/>
@@ -20,7 +20,7 @@ export const Tab = () => {
         },
         {
           key: '2',
-          label: 'Active',
+          label: <p className={tabText}>Active</p>,
           children: 
           <div className={tabContainer}>
             <TodoList data={activeTodos} />
@@ -28,7 +28,7 @@ export const Tab = () => {
         },
         {
           key: '3',
-          label: 'Completed',
+          label: <p className={tabText}>Completed</p>,
           children: <div className={tabContainer}>
             <TodoCompletedList  data={todoComplete} />
           </div> 
@@ -59,3 +59,12 @@ const tabContainer = style(
     alignItems:'center',
   }
 )  
+
+const tabText = style({
+  color: '#000',
+  fontFamily: 'Montserrat',
+  fontSize: '1.125rem',
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+});

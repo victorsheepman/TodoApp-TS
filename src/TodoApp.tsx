@@ -32,7 +32,7 @@ export const TodoApp = () => {
     <main className={mainStyles}>
       <Row className={rowWrapper}>
         <Col span={24} className={colWrapper}>
-          <Typography.Title level={3}>#todo</Typography.Title>
+          <h1 className={mainTitle}>#todo</h1>
         </Col>
         <Col span={24}>
           <Tab />
@@ -64,5 +64,18 @@ const colWrapper = style(
     display:'flex', 
     justifyContent:'center', 
     alignItems:'center'
+  }
+)
+
+const mainTitle = style(
+  {
+    color: '#333',
+    textAlign: 'center',
+    fontFamily: 'Raleway',
+    fontSize: '2.25rem',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    letterSpacing: '-1.62px'
   }
 )
